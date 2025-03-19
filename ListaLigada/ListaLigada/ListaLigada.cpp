@@ -138,21 +138,88 @@ void inserirElemento()
 		NO* aux = primeiro;
 		while (aux->prox != NULL) {
 			aux = aux->prox;
+			if (aux->valor == novo->valor) {
+				cout << "Nao e possivel inserir valor duplicado";
+				break;
+			}
 		}
 		aux->prox = novo;
 	}
 }
 
 void excluirElemento()
+
 {
+
+	if (primeiro == NULL) {
+		cout << "Lista vazia, impossivel excluir";
+		return;
+	}
+
+
+	int valorAExcluir = 0;
+
+	cout << "Insira o valor a excluir";
+
+	cin >> valorAExcluir;
+
+	NO* aux = primeiro;
+
+	NO* anterior =  NULL;
+
+	if (primeiro->valor == valorAExcluir) {
+		primeiro = primeiro->prox;
+		free(aux);
+		cout << "Elemento excluido";
+	}
+
+
+	
+
+	while (aux->prox != NULL && aux->valor != valorAExcluir) {
+
+		anterior = aux;
+		aux = aux->prox;
+	}
+
+	if (aux ==  NULL) {
+		cout << "Elemento nao encontrado";
+	}
+	else {
+		anterior->prox = aux ->prox;
+		free(aux);
+		cout << "Elemento excluido";
+	}
 	
 }
 
-void buscarElemento()
-{
+void buscarElemento(){
+
+
+if (primeiro == NULL) {
+	cout << "Lista vazia";
+}
+	NO* aux = primeiro;
+
+	int elementoABuscar = 0;
+
+	int naoEncontrado = -1;
+
+	cout << "Insira o elemento a ser buscado";
+
+	cin >> elementoABuscar;
+
+	while (aux!= NULL) {
+		if (aux->valor == elementoABuscar) {
+			cout << "Elemento encontrado" << endl;
+			return;
+		}
+
+		aux = aux->prox;
+	}
+		cout << "Nao encontrado";
 	
 }
-
 
 
 // retorna um ponteiro para o elemento buscado
